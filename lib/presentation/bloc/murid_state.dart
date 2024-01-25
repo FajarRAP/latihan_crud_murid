@@ -19,3 +19,7 @@ class MuridSended extends MuridState {}
 class MuridEditing extends MuridState {}
 
 class MuridEdited extends MuridState {}
+
+class MuridDeleting extends MuridState {}
+
+class MuridDeleted extends MuridState {}

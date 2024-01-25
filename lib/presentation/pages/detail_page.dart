@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/models/murid_model.dart';
 import '../bloc/murid_bloc.dart';
-import '../widgets/item_murid_widget.dart';
 
 class DetailMurid extends StatelessWidget {
   final Murid murid;
@@ -36,17 +35,22 @@ class DetailMurid extends StatelessWidget {
                   ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text("Berhasil Edit")));
                   muridBloc.add(ReadMuridEvent());
+                } else if (state is MuridDeleted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Berhasil Hapus")));
+                  muridBloc.add(ReadMuridEvent());
                 }
               },
               child: Row(
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                        onPressed: () {
-                          final Murid data =
-                              Murid(nim: murid.nim, nama: namaController.text);
-                          muridBloc.add(EditMuridEvent(murid: data));
-                        },
+                        onPressed: () => muridBloc.add(
+                              EditMuridEvent(
+                                  murid: Murid(
+                                      nim: murid.nim,
+                                      nama: namaController.text)),
+                            ),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.amber),
                         child: const Text(
@@ -60,7 +64,9 @@ class DetailMurid extends StatelessWidget {
                   const SizedBox(width: 24),
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        muridBloc.add(DeleteMuridEvent(nim: murid.nim));
+                      },
                       style:
                           ElevatedButton.styleFrom(backgroundColor: Colors.red),
                       child: const Text(

@@ -17,3 +17,9 @@ class EditMuridEvent extends MuridEvent {
 
   EditMuridEvent({required this.murid});
 }
+
+class DeleteMuridEvent extends MuridEvent {
+  final String nim;
+
+  DeleteMuridEvent({required this.nim});
+}

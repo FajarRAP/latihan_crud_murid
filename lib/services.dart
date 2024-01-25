@@ -37,4 +37,14 @@ class ToDoServices {
       print("response update ${response.body}");
     }
   }
+
+  Future<void> deleteMurid(String nim) async {
+    final response = await http.post(
+        Uri.parse("http://10.0.2.2/crud_student_flutter_api/hapus.php"),
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode({"nim": nim}));
+    if (response.statusCode == 200) {
+      print("response delete ${response.body}");
+    }
+  }
 }
