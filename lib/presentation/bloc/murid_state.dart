@@ -5,13 +5,17 @@ sealed class MuridState {}
 
 final class MuridInitial extends MuridState {}
 
-final class MuridLoading extends MuridState {}
+class MuridLoading extends MuridState {}
 
-final class MuridLoaded extends MuridState {
+class MuridLoaded extends MuridState {
   final List<Murid> murid;
   MuridLoaded(this.murid);
 }
 
-final class MuridSending extends MuridState {}
+class MuridSending extends MuridState {}
 
-final class MuridSended extends MuridState {}
+class MuridSended extends MuridState {}
+
+class MuridEditing extends MuridState {}
+
+class MuridEdited extends MuridState {}

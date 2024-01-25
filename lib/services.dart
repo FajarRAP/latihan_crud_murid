@@ -26,4 +26,15 @@ class ToDoServices {
       print("response ${response.body}");
     }
   }
+
+  Future<void> editMurid(Murid murid) async {
+    final response = await http.post(
+      Uri.parse("http://10.0.2.2/crud_student_flutter_api/edit.php"),
+      headers: {"Content-Type": "application/json"},
+      body: jsonEncode(murid.toJson()),
+    );
+    if (response.statusCode == 200) {
+      print("response update ${response.body}");
+    }
+  }
 }

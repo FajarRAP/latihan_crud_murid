@@ -11,3 +11,9 @@ class CreateMuridEvent extends MuridEvent {
 
   CreateMuridEvent({required this.nim, required this.nama});
 }
+
+class EditMuridEvent extends MuridEvent {
+  final Murid murid;
+
+  EditMuridEvent({required this.murid});
+}

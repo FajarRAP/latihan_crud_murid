@@ -13,6 +13,7 @@ class MuridBloc extends Bloc<MuridEvent, MuridState> {
   MuridBloc(this.toDoServices) : super(MuridInitial()) {
     on<ReadMuridEvent>(_readMuridEvent);
     on<CreateMuridEvent>(_createMuridEvent);
+    on<EditMuridEvent>(_editMuridEvent);
   }
 
   FutureOr<void> _readMuridEvent(
@@ -31,5 +32,14 @@ class MuridBloc extends Bloc<MuridEvent, MuridState> {
     emit(MuridSending());
     await toDoServices.addMurid(event.nim, event.nama);
     emit(MuridSended());
+  }
+
+  FutureOr<void> _editMuridEvent(
+    EditMuridEvent event,
+    Emitter<MuridState> emit,
+  ) async {
+    emit(MuridEditing());
+    await toDoServices.editMurid(event.murid);
+    emit(MuridEdited());
   }
 }
